@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useFinancialData } from '@/hooks/useFinancialData';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const COLORS = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444', '#8B5CF6', '#F97316', '#06B6D4', '#6B7280'];
 
@@ -15,11 +15,28 @@ export const Dashboard = () => {
     }))
     .sort((a, b) => b.value - a.value);
 
+  const totalExpenses = chartData.reduce((sum, item) => sum + item.value, 0);
+
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format(value);
+  };
+
+  const renderCustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const data = payload[0];
+      const percentage = totalExpenses > 0 ? ((data.value / totalExpenses) * 100).toFixed(1) : '0';
+      return (
+        <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
+          <p className="text-foreground font-medium">{data.payload.name}</p>
+          <p className="text-green-400 font-bold">{formatCurrency(data.value)}</p>
+          <p className="text-muted-foreground text-sm">{percentage}% do total</p>
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -115,6 +132,7 @@ export const Dashboard = () => {
         <Card className="bg-card border-border">
           <CardHeader>
             <CardTitle className="text-lg font-semibold text-foreground">Gastos por Categoria</CardTitle>
+            <p className="text-sm text-muted-foreground">Total: {formatCurrency(totalExpenses)}</p>
           </CardHeader>
           <CardContent>
             <div className="h-64">
@@ -127,13 +145,17 @@ export const Dashboard = () => {
                     outerRadius={60}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, value }) => `${name}: ${formatCurrency(value)}`}
+                    label={({ name, value }) => {
+                      const percentage = totalExpenses > 0 ? ((value / totalExpenses) * 100).toFixed(1) : '0';
+                      return `${name}: ${percentage}%`;
+                    }}
                     labelLine={false}
                   >
                     {chartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
+                  <Tooltip content={renderCustomTooltip} />
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>

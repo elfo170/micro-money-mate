@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { FinancialData, Transaction, Debt, Settings } from '@/types/financial';
 
@@ -231,12 +230,7 @@ export const useFinancialData = () => {
           categoryTotals[transaction.category] = (categoryTotals[transaction.category] || 0) + transaction.value;
         });
       
-      // Somar dívidas "me devem" (gastos de criação)
-      data.debts
-        .filter(d => d.type === 'me_devem')
-        .forEach(debt => {
-          categoryTotals[debt.category] = (categoryTotals[debt.category] || 0) + debt.value;
-        });
+      // NÃO somar dívidas "me devem" - elas não são gastos diretos
       
       // Somar dívidas "devo" quitadas (gastos de quitação)
       data.debts

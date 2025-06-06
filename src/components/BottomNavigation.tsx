@@ -17,7 +17,7 @@ const tabs = [
 
 export const BottomNavigation = ({ currentTab, onTabChange }: BottomNavigationProps) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-1 py-2 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border px-1 py-2 z-50">
       <div className="flex justify-around items-center max-w-md mx-auto">
         {tabs.map(({ id, label, icon: Icon }) => (
           <button
@@ -26,8 +26,8 @@ export const BottomNavigation = ({ currentTab, onTabChange }: BottomNavigationPr
             className={cn(
               "flex flex-col items-center p-2 rounded-lg transition-colors text-xs",
               currentTab === id
-                ? "text-green-600 bg-green-50"
-                : "text-gray-500 hover:text-gray-700"
+                ? "text-green-400 bg-green-950"
+                : "text-muted-foreground hover:text-foreground"
             )}
           >
             <Icon size={20} />

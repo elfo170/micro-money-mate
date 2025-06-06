@@ -23,72 +23,72 @@ export const Dashboard = () => {
   };
 
   return (
-    <div className="p-4 pb-20 space-y-4">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Dashboard Financeiro</h1>
+    <div className="p-4 pb-20 space-y-4 bg-background min-h-screen">
+      <h1 className="text-2xl font-bold text-foreground mb-6">Dashboard Financeiro</h1>
       
       {/* Cards principais */}
       <div className="grid grid-cols-2 gap-4">
-        <Card>
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Saldo Atual</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Saldo Atual</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-green-600">
+            <p className="text-2xl font-bold text-green-400">
               {formatCurrency(data.settings.currentBalance)}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Receita Esperada</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Receita Esperada</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-bold text-blue-400">
               {formatCurrency(data.settings.expectedRevenue)}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Fatura do Cartão</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Fatura do Cartão</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-red-600">
+            <p className="text-2xl font-bold text-red-400">
               {formatCurrency(data.settings.cardBill)}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Meta Final</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Meta Final</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-purple-600">
+            <p className="text-2xl font-bold text-purple-400">
               {formatCurrency(data.settings.finalGoal)}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Me Devem</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Me Devem</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-green-500">
+            <p className="text-2xl font-bold text-green-400">
               {formatCurrency(calculations.totalOwing)}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Eu Devo</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Eu Devo</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-orange-600">
+            <p className="text-2xl font-bold text-orange-400">
               {formatCurrency(calculations.totalOwed)}
             </p>
           </CardContent>
@@ -96,7 +96,7 @@ export const Dashboard = () => {
       </div>
 
       {/* Card do valor que pode gastar */}
-      <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
+      <Card className="bg-gradient-to-r from-green-600 to-green-700 text-white border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-lg font-medium text-green-100">Posso Gastar</CardTitle>
         </CardHeader>
@@ -112,9 +112,9 @@ export const Dashboard = () => {
 
       {/* Gráfico de gastos por categoria */}
       {chartData.length > 0 && (
-        <Card>
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold">Gastos por Categoria</CardTitle>
+            <CardTitle className="text-lg font-semibold text-foreground">Gastos por Categoria</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-64">

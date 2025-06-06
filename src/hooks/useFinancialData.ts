@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { FinancialData, Transaction, Debt, Settings } from '@/types/financial';
 
@@ -17,6 +16,7 @@ const DEFAULT_DATA: FinancialData = {
 
 export const useFinancialData = () => {
   const [data, setData] = useState<FinancialData>(DEFAULT_DATA);
+  const [updateTrigger, setUpdateTrigger] = useState(0);
 
   useEffect(() => {
     const savedData = localStorage.getItem('financial-data');
@@ -32,6 +32,7 @@ export const useFinancialData = () => {
   const saveData = (newData: FinancialData) => {
     setData(newData);
     localStorage.setItem('financial-data', JSON.stringify(newData));
+    setUpdateTrigger(prev => prev + 1); // Força re-renderização
   };
 
   const addTransaction = (transaction: Omit<Transaction, 'id' | 'createdAt'>) => {
@@ -214,6 +215,7 @@ export const useFinancialData = () => {
       .filter(d => d.type === 'me_devem' && d.status === 'pendente')
       .reduce((sum, debt) => sum + debt.value, 0),
     
+    // Fórmula corrigida: Saldo + Receita + Me Devem - Fatura - Devo - Meta
     canSpend: data.settings.currentBalance + 
               data.settings.expectedRevenue + 
               data.debts.filter(d => d.type === 'me_devem' && d.status === 'pendente').reduce((sum, debt) => sum + debt.value, 0) -
@@ -255,5 +257,6 @@ export const useFinancialData = () => {
     updateSettings,
     clearAllData,
     calculations,
+    updateTrigger, // Expor o trigger para forçar re-renderização
   };
 };

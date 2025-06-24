@@ -111,16 +111,14 @@ export const useFinancialData = () => {
       createdAt: new Date().toISOString(),
     };
     
-    let newSettings = { ...data.settings };
+    const newSettings = { ...data.settings };
 
-    // Aplicar lógica conforme especificação
-    if (debt.type === 'devo') {
-      // Eu devo: implica entrada de dinheiro no saldo atual
-      newSettings.currentBalance += debt.value;
-    } else if (debt.type === 'me_devem') {
+    // Corrigido: Não altera o saldo ao adicionar dívida do tipo "devo"
+    if (debt.type === 'me_devem') {
       // Me devem: implica saída de dinheiro do saldo atual
       newSettings.currentBalance -= debt.value;
     }
+    // Para "devo", não altera o saldo
     
     const newData = {
       ...data,

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -89,7 +88,7 @@ export const Transactions = () => {
                     </span>
                     <span className="text-xs text-gray-500">{transaction.category}</span>
                   </div>
-                  <p className="font-semibold text-gray-900 mb-1">{transaction.description}</p>
+                  <p className="font-semibold text-white mb-1">{transaction.description}</p>
                   <div className="flex justify-between items-center">
                     <span className={`text-lg font-bold ${
                       transaction.type === 'receita' ? 'text-green-600' : 'text-red-600'

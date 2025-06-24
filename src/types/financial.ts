@@ -1,4 +1,3 @@
-
 export interface Transaction {
   id: string;
   type: 'receita' | 'despesa';
@@ -36,13 +35,14 @@ export interface FinancialData {
 }
 
 export const CATEGORIES = [
+  'Alimentação',
   'Transporte',
-  'Alimentação', 
   'Lazer',
-  'Saúde',
-  'Educação',
-  'Doação/Presentes',
+  'Álcool',
+  'Cigarro',
   'Confidencial',
+  'Saúde',
+  'Doação/Presentes',
   'Outros'
 ] as const;
 

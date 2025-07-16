@@ -1,0 +1,3 @@
+// Capacitor plugin registration for CapturaNotificacao
+import { CapturaNotificacao } from './src/plugins/capturaNotificacao';
+// ...existing code...

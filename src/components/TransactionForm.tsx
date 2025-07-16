@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -22,7 +21,7 @@ export const TransactionForm = ({ open, onClose }: TransactionFormProps) => {
     category: '',
     description: '',
     date: new Date().toISOString().split('T')[0],
-    paymentMethod: 'pix' as 'credito' | 'pix',
+    paymentMethod: 'credito' as 'credito' | 'pix',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -47,7 +46,7 @@ export const TransactionForm = ({ open, onClose }: TransactionFormProps) => {
       category: '',
       description: '',
       date: new Date().toISOString().split('T')[0],
-      paymentMethod: 'pix',
+      paymentMethod: 'credito',
     });
     
     onClose();

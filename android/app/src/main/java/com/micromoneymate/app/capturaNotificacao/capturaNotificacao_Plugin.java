@@ -11,7 +11,6 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
-import com.getcapacitor.PluginEventListener;
 
 @CapacitorPlugin(name = "CapturaNotificacao")
 public class capturaNotificacao_Plugin extends Plugin {

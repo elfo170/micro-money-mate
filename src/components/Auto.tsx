@@ -82,10 +82,10 @@ export const Auto = () => {
           </div>
           <div className="space-y-2">
             <h2 className="text-xl font-semibold text-gray-700">
-              Captura automática de notificações XP
+              Captura automática de notificações XP Investimentos
             </h2>
             <p className="text-gray-500 max-w-md mx-auto">
-              Notificações do app XP serão capturadas automaticamente e sugeridas como lançamentos. Edite e aprove para adicionar ao seu controle financeiro.
+              Notificações do app XP Investimentos serão capturadas automaticamente e sugeridas como lançamentos. Edite e aprove para adicionar ao seu controle financeiro.
             </p>
           </div>
         </CardContent>

@@ -6,7 +6,7 @@ export interface NotificationData {
   subText?: string;
   timestamp: number;
   isNew: boolean;
-  extras: any;
+  extras: Record<string, unknown>;
 }
 
 export interface CapturaNotificacaoPlugin {

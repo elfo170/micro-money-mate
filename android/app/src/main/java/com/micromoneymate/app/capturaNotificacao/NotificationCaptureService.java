@@ -22,10 +22,16 @@ public class NotificationCaptureService extends NotificationListenerService {
             sbn.isOngoing(),
             extras
         );
-        capturaNotificacao_Plugin plugin = (capturaNotificacao_Plugin) getApplication();
-        if (plugin != null) {
-            plugin.sendNotificationToJS(data);
-        }
+        Intent intent = new Intent("com.micromoneymate.app.NOTIFICATION_CAPTURED");
+        intent.putExtra("id", data.id);
+        intent.putExtra("packageName", data.packageName);
+        intent.putExtra("title", data.title);
+        intent.putExtra("text", data.text);
+        intent.putExtra("subText", data.subText);
+        intent.putExtra("timestamp", data.timestamp);
+        intent.putExtra("isNew", data.isNew);
+        intent.putExtra("extras", data.extras != null ? data.extras.toString() : null);
+        sendBroadcast(intent);
     }
 
     @Override
